@@ -3,7 +3,7 @@ var NewsConstants = require('../constants/NewsConstants');
 require('whatwg-fetch');
 
 var NewsActions = {
-  // When data is loaded for the first time
+  // When data is loaded
   loaded : function(data) {
     AppDispatcher.dispatch({
       actionType: NewsConstants.NEWS_LOAD,
