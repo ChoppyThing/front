@@ -4,40 +4,42 @@ var Note = require('./note');
 var Page = require('./page');
 var HeadMenu = require('./head_menu');
 var Col = require('react-bootstrap').Col;
+var NewsStore = require('../../stores/NewsStore');
+var NewsServer = require('../../server/NewsServer');
+var NewsActions = require('../../actions/NewsActions');
 
 require('whatwg-fetch');
 
+
+function getNewsState() {
+  let notes = NewsStore.getNotes();
+
+  return {
+    notes: notes.data,
+    total: notes.total,
+    number: notes.number
+  }
+}
+
 var Blog = React.createClass({
   getInitialState: function() {
+    NewsServer.boot(this.props.params.page);
     return {
       notes: []
     };
   },
   componentDidMount: function() {
-    this.setState({page: 1});
-    this.getNews();
+    // Moved to getInitialState temporarily to see if this doesn't cause any loading side effect
+    // NewsServer.boot(this.props.params.page);
+    NewsStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    NewsStore.removeChangeListener(this._onChange);
   },
 
   componentDidUpdate: function(prevProps, prevState){
-    if (this.state.page != this.props.params.page) {
-      this.state.page = this.props.params.page;
-      this.getNews();
-    }
-  },
-
-  getNews: function() {
-    var page = this.state.page;
-    
-    fetch('http://localhost.com:1337/news/get/?page='+page)
-    .then(response => {
-      return response.json()
-    }).then(json => {
-      this.setState({notes: json.data});
-      this.setState({total: json.total});
-      this.setState({number: json.number});
-    }).catch(error => {
-      this.setState({notes: [{title: 'Une erreur est survenue.'}]});
-    });
+    // this.state.page = this.props.params.page;
   },
 
   render: function() {
@@ -61,6 +63,10 @@ var Blog = React.createClass({
         </Col>
       </div>
     );
+  },
+
+  _onChange: function() {
+    this.setState(getNewsState());
   }
 });
 

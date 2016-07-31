@@ -6,7 +6,8 @@ var Route = require('react-router').Route
 var Link = require('react-router').Link
 var browserHistory = require('react-router').browserHistory;
 
-var Blog = require('./blog/blog');
+var Blog = require('./components/blog/blog');
+var Page = require('./components/blog/page');
 
 require('whatwg-fetch');
 
@@ -30,7 +31,7 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}/>
     <Route path="/blog" component={Blog}>
-      <Route path="/blog/page/:page" component={Blog}/>
+      <Route path="/blog/page/:page" component={Page}/>
     </Route>
 </Router>),
   document.getElementById('app')
