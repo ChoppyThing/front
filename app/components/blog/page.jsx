@@ -1,8 +1,6 @@
 var React = require('react');
 var Link = require('react-router').Link
-var browserHistory = require('react-router').browserHistory
 var NewsActions = require('../../actions/NewsActions');
-var NewsServer = require('../../server/NewsServer');
 
 var Page = React.createClass({
 

@@ -2,11 +2,8 @@ var React = require('react');
 var Link = require('react-router').Link
 var Note = require('./note');
 var Page = require('./page');
-var HeadMenu = require('./head_menu');
-var Col = require('react-bootstrap').Col;
 var NewsStore = require('../../stores/NewsStore');
 var NewsServer = require('../../server/NewsServer');
-var NewsActions = require('../../actions/NewsActions');
 
 require('whatwg-fetch');
 
@@ -45,22 +42,18 @@ var Blog = React.createClass({
   render: function() {
     return (
       <div className="blog">
-        <Col md={8} mdOffset={2}>
-          <HeadMenu />
+        Blog
 
-           Blog
+        <Note notes={this.state.notes} />
+        
+        <Page 
+          page={this.props.params.page}
+          total={this.state.total}
+          number={this.state.number}
+        />
+        {this.props.params.page}
 
-          <Note notes={this.state.notes} />
-          
-          <Page 
-              page={this.props.params.page}
-              total={this.state.total}
-              number={this.state.number}
-          />
-          {this.props.params.page}
-
-          <Link to={`/`}>Is that ?</Link>
-        </Col>
+        <Link to={`/`}>Is that ?</Link>
       </div>
     );
   },

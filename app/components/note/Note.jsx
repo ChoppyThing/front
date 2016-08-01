@@ -1,29 +1,31 @@
 var React = require('react');
-var HeadMenu = require('../blog/head_menu');
-var Col = require('react-bootstrap').Col;
-var NewsServer = require('../../server/NewsServer');
+var NoteStore = require('../../stores/NoteStore');
+var NoteServer = require('../../server/NoteServer');
+var NoteActions = require('../../actions/NoteActions');
 
+function getNote() {
+  let note = NoteStore.getNote();
+  return {
+    note : note
+  }
+}
 
 var Note = React.createClass({
   getInitialState: function() {
+    NoteServer.load(this.props.params.note);
     return {
       note: {}
     };
   },
 
   componentDidMount: function() {
-    let id = this.props.params.note;
-
-    fetch('http://localhost.com:1337/news/getone/?id=' + id)
-    .then(response => {
-        return response.json();
-    })
-    .then(json => {
-      this.setState({note: json});
-    }).catch(error => {
-        console.log('Load news error', error);
-    });
+    NoteStore.addChangeListener(this._onChange);
   },
+
+  componentWillUnmount: function() {
+    NoteStore.removeChangeListener(this._onChange);
+  },
+
 
   render: function() {
 
@@ -38,29 +40,28 @@ var Note = React.createClass({
 
     return (
       <div className="blog">
-        <Col md={8} mdOffset={2}>
-          <HeadMenu />
+        Note Info{this.props.params.note}<br/><br/>
 
-           Note Info<br/><br/>
-
-           {this.state.note.title}<br/>
-           {this.state.note.text}<br/>
-           <hr/>
-           
-           <div className="">
-            {comments.map(comment => {
-                return (
-                  <div key={comment.id}>
-                    {comment.name}<br/>
-                    {comment.comment}<br/><br/>
-                  </div>
-                );
-            })}
-           </div>
-
-        </Col>
+        {this.state.note.title}<br/>
+        {this.state.note.text}<br/>
+        <hr/>
+       
+        <div className="">
+          {comments.map(comment => {
+              return (
+                <div key={comment.id}>
+                  {comment.name}<br/>
+                  {comment.comment}<br/><br/>
+                </div>
+              );
+          })}
+        </div>
       </div>
     );
+  },
+
+  _onChange: function() {
+    this.setState(getNote());
   }
 });
 

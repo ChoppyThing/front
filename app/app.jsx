@@ -9,6 +9,7 @@ var browserHistory = require('react-router').browserHistory;
 var Blog = require('./components/blog/blog');
 var Page = require('./components/blog/page');
 var Note = require('./components/note/Note');
+var Layout = require('./components/utils/Layout');
 
 require('whatwg-fetch');
 
@@ -31,10 +32,12 @@ var App = React.createClass({
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}/>
-    <Route path="/blog" component={Blog}>
-      <Route path="/blog/page/:page" component={Page}/>
+    <Route component={Layout}>
+      <Route path="/blog" component={Blog}>
+        <Route path="/blog/page/:page" component={Page}/>
+      </Route>
+      <Route path="/blog/note/:note" component={Note}/>
     </Route>
-    <Route path="/blog/note/:note" component={Note}/>
-</Router>),
+  </Router>),
   document.getElementById('app')
 );

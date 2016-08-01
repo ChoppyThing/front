@@ -29,5 +29,17 @@ module.exports = {
 	    }).catch(error => {
 	      	console.log('Load news error', error);
 	    });		
+	},
+
+	getOne: function(id) {
+	    fetch('http://localhost.com:1337/news/getone/?id=' + id)
+	    .then(response => {
+	      	return response.json();
+	    })
+	    .then(json => {
+	    	NewsActions.loaded(json);
+	    }).catch(error => {
+	      	console.log('Load news error', error);
+	    });		
 	}
 };
