@@ -1,3 +1,6 @@
+/**
+ * TODO MOVE THIS FILE TO A GLOBAL SPACE
+ */
 var React = require('react');
 var Link = require('react-router').Link
 
