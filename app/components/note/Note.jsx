@@ -2,6 +2,7 @@ var React = require('react');
 var NoteStore = require('../../stores/NoteStore');
 var NoteServer = require('../../server/NoteServer');
 var NoteActions = require('../../actions/NoteActions');
+var Comment = require('./Comment');
 
 function getNote() {
   let note = NoteStore.getNote();
@@ -56,6 +57,9 @@ var Note = React.createClass({
               );
           })}
         </div>
+        <br/><br/>
+
+        <Comment/>
       </div>
     );
   },
