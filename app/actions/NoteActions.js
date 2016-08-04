@@ -11,12 +11,26 @@ var NoteActions = {
     });
   },
 
-  // Page change
+  // Comments handling
   addComment: function(comment) {
     AppDispatcher.dispatch({
       actionType: NoteConstants.ADD_COMMENT,
       comment: comment
     });
+  },
+
+  getComments: function(note) {
+    AppDispatcher.dispatch({
+      actionType: NoteConstants.GET_COMMENTS,
+      note: note
+    });
+  },
+
+  commentsLoaded: function(comments) {
+    AppDispatcher.dispatch({
+      actionType: NoteConstants.SET_COMMENTS,
+      comments: comments
+    });    
   }
 };
 

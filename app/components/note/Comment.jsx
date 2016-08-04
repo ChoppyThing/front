@@ -14,7 +14,10 @@ var Comment = React.createClass({
 
   handleSubmit: function() {
     console.log(this.state);
-    // ACTION HERE !!!
+    let comment = this.state;
+    comment.news_id = this.props.note;
+
+    NoteActions.addComment(comment);
   },
 
   handleChange: function(event) {
@@ -24,12 +27,12 @@ var Comment = React.createClass({
 
   render: function() {
     return (
-      <div className="comment-writer">
+      <div className="comment-writer"> {this.props.note}
         Nom<br/>
         <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br/><br/>
 
         Commentaire<br/>
-        <textarea name="text" value={this.state.text} onChange={this.handleChange}></textarea>
+        <textarea name="comment" value={this.state.comment} onChange={this.handleChange}></textarea>
         <br/>
         <input type="submit" onClick={this.handleSubmit} value="Envoyer"/>
       </div>

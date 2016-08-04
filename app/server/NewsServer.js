@@ -1,13 +1,13 @@
 require('whatwg-fetch');
 var NewsActions = require('../actions/NewsActions');
-
+const Router = require('../config/Router');
 
 module.exports = {
 
 	boot: function(page) {
 
 		let pageNumber = page ? page : 1;
-	    fetch('http://localhost.com:1337/news/get/?page=' + pageNumber)
+	    fetch(Router.getPath('news_page', {page: pageNumber}))
 	    .then(response => {
 	      	return response.json();
 	    })
@@ -20,7 +20,7 @@ module.exports = {
 	},
 
 	get: function(page) {
-	    fetch('http://localhost.com:1337/news/get/?page=' + page)
+	    fetch(Router.getPath('news_page', {page: page}))
 	    .then(response => {
 	      	return response.json();
 	    })
@@ -32,7 +32,7 @@ module.exports = {
 	},
 
 	getOne: function(id) {
-	    fetch('http://localhost.com:1337/news/getone/?id=' + id)
+	    fetch(Router.getPath('news_get_by_id', {id: id}))
 	    .then(response => {
 	      	return response.json();
 	    })

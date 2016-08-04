@@ -8,10 +8,12 @@ require('whatwg-fetch');
 var CHANGE_EVENT = 'change';
 
 var _note = {};
+var _comments = {};
 
 var NoteStore = assign({}, EventEmitter.prototype, {
   setNote: function(data) {
     _note = data;
+    _comments = data.comments;
     return _note;
   },
 
@@ -23,8 +25,24 @@ var NoteStore = assign({}, EventEmitter.prototype, {
     NoteServer.get(id);
   },
 
-  fetchComments: function(id) {
+  setComments: function(comments) {
+    _comments = comments;
+    return _comments;
+  },
 
+  getComments: function() { 
+    if (Object.keys(_comments).length > 0) {
+      return _comments;
+    }
+    return false;
+  },
+
+  addComment: function(comment) {
+    NoteServer.addComment(comment);
+  },
+
+  fetchComments: function(note) {
+    NoteServer.getComments(note);
   },
 
   emitChange: function() {
@@ -56,12 +74,17 @@ AppDispatcher.register(function(action) {
     break;
 
     case NoteConstants.ADD_COMMENT:
-        NoteStore.fetchNote(action.comment);
+        NoteStore.addComment(action.comment);
         NoteStore.emitChange();
     break;
 
     case NoteConstants.GET_COMMENTS:
-        NoteStore.fetchComments(action.id);
+        NoteStore.fetchComments(action.note);
+        NoteStore.emitChange();
+    break;
+
+    case NoteConstants.SET_COMMENTS:
+        NoteStore.setComments(action.comments);
         NoteStore.emitChange();
     break;
 

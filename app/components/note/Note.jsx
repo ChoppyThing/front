@@ -11,6 +11,10 @@ function getNote() {
   }
 }
 
+function getComments() {
+  return NoteStore.getComments();
+}
+
 var Note = React.createClass({
   getInitialState: function() {
     NoteServer.load(this.props.params.note);
@@ -27,6 +31,16 @@ var Note = React.createClass({
     NoteStore.removeChangeListener(this._onChange);
   },
 
+  handleComments: function() {
+    let comments = getComments();
+
+    let note = {note: this.state.note};
+    note.note.comments = comments;
+
+    if (comments) {
+      this.setState(note);
+    }
+  },
 
   render: function() {
 
@@ -59,13 +73,14 @@ var Note = React.createClass({
         </div>
         <br/><br/>
 
-        <Comment/>
+        <Comment note={this.props.params.note}/>
       </div>
     );
   },
 
   _onChange: function() {
     this.setState(getNote());
+    this.handleComments();
   }
 });
 
