@@ -1,6 +1,3 @@
-/**
- * TODO MOVE THIS FILE TO A GLOBAL SPACE
- */
 var React = require('react');
 var Link = require('react-router').Link
 
@@ -11,12 +8,19 @@ var HeadMenu = React.createClass({
 				<ul>
 					<li>
 						<b>
-							<Link to={`/`}>Accueil</Link>
+							<Link to={`/`}>
+								<i className="fa fa-home"></i>
+								Accueil
+							</Link>
 						</b>
 					</li>
+					<li className="separator"> | </li>
 					<li>
 						<b>
-							<Link to={`/blog`}>Blog</Link>
+							<Link to={`/blog`}>
+								<i className="fa fa-newspaper-o" aria-hidden="true"></i>
+								Blog
+							</Link>
 						</b>
 					</li>
 				</ul>

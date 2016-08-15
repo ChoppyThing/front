@@ -42,8 +42,6 @@ var Blog = React.createClass({
   render: function() {
     return (
       <div className="blog">
-        Blog
-
         <Note notes={this.state.notes} />
         
         <Page 
@@ -51,9 +49,6 @@ var Blog = React.createClass({
           total={this.state.total}
           number={this.state.number}
         />
-        {this.props.params.page}
-
-        <Link to={`/`}>Is that ?</Link>
       </div>
     );
   },
