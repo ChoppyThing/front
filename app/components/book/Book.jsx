@@ -159,6 +159,14 @@ var Book = React.createClass({
           </div>
 
           <CategoryDesktop categories={this.state.categories}/>
+
+          <div style={{display: 'none'}} className="preload">
+            {this.state.book.data.map(photo => {
+              return (
+                <img key={photo.id} src={photo.url}/>
+              );
+            })}
+          </div>
         </div>
     );
   },
