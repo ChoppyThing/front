@@ -1,3 +1,6 @@
+$breakpoint-desktop: 768px;
+$breakpoint-cell: 480px;
+
 .main {
     height: 25px;
     width: 100%;
@@ -30,4 +33,147 @@
         border-bottom: 2px solid #ebebeb;
         text-align: right;
     }
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    font-size: 25px;
+    color: rgb(150, 198, 203);
+    width: 100%;
+
+    .left {
+        cursor: pointer;
+        position: absolute;
+        left: 2%;
+        z-index: 100;
+    }
+
+    .right {
+        cursor: pointer;
+        position: absolute;
+        right: 2%;
+        z-index: 100;
+    }
+}
+
+.image-panel {
+    height: 92%;
+    width: 100%;
+}
+
+@media (max-width: $breakpoint-cell) {
+    .cell-menu {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 200;
+
+        button {
+            &.bio-burger {
+                margin: 15px;
+            }
+        }
+
+        ul {
+            left: 50%;
+            width: 100%;
+            list-style-type: none;
+
+            padding: 25px;
+
+            li {
+                color: white;
+                font-size: 17px;
+
+                span {
+                    margin-left: 10%;
+                    a {
+                        color: white;
+                        font-weight: bold;
+                    }
+
+                    i {
+                        margin-right: 20px;
+                        color: #ececec;
+                        font-size: 25px;
+                        vertical-align: bottom;
+                    }
+                }
+
+                hr {
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                    border-color: gray;
+                    border-style: dotted;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpoint-cell) {
+    .cell-menu {
+        display: none;
+    }
+}
+
+.category-panel {
+    height: 5%;
+
+    @media (min-width: $breakpoint-cell) {
+        li {
+            display: inline;
+
+            a {
+                color: rgba(150, 162, 149, 0.68);
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .separator {
+                color: gray;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-cell) {
+        ul {
+            display: none;
+        }
+
+        .separator {
+            display: none;
+        }
+    }
+}
+
+/**
+ * Test with react transitions...   
+ **/
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

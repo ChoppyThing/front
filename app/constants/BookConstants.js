@@ -1,6 +1,6 @@
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
-  NEWS_LOAD: null,
-  PAGE_CHANGE: null
+  GET_ALL: null,
+  GET_BY_ID: null
 });

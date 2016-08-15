@@ -5,7 +5,10 @@ let routes = {
 	news_get_by_id: '/news/getone/',
 
 	comment_add: '/comment/add',
-	comments_get: '/comment/getComments/'
+	comments_get: '/comment/getComments/',
+
+	book_get_categories: '/book/getBookCategories/',
+	book_get_by_category: '/book/getAllByCategory/'
 };
 
 module.exports = {
