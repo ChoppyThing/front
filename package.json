@@ -5,28 +5,37 @@
   "main": "public/bundle.js",
   "scripts": {
     "setup": "npm install",
-    "dev": "./node_modules/.bin/node-sass yoda.scss ./public/yoda.css && ./node_modules/.bin/webpack -d && webpack-dev-server --hot --host 0.0.0.0 --inline --content-base"
+    "dev": "./node_modules/.bin/node-sass yoda.scss ./public/yoda.css && ./node_modules/.bin/webpack -d && webpack-dev-server --hot --host 0.0.0.0 --inline --content-base",
+    "live": "node server.js"
   },
-  "author": "",
+  "author": "Choppy Thing",
   "license": "ISC",
   "dependencies": {
-    "babel-loader": "^6.2.4",
-    "babel-preset-react": "^6.11.1",
-    "extract-text-webpack-plugin": "^1.0.1",
     "http-server": "^0.9.0",
     "node-sass": "^3.8.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
     "react-router": "^2.6.0",
-    "webpack": "^1.13.1"
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2",
+    "webpack": "^1.13.1",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
+    "babel-eslint": "^4.1.3",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.0.15",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.6.2",
+    "react-hot-loader": "^1.3.0",
     "css-loader": "^0.23.1",
     "style-loader": "^0.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "babel-preset-es2017": "^1.6.1",
+    "extract-text-webpack-plugin": "^1.0.1"
   }
 }
