@@ -1,3 +1,25 @@
+$breakpoint-desktop: 768px;
+$breakpoint-cell: 480px;
+
+@font-face {
+    font-family: "Open sans";
+    src: url('font/OpenSans-Regular.ttf');
+}
+@font-face {
+    font-family: "Open sans";
+    font-style: italic;
+    src: url('font/OpenSans-Italic.ttf');
+}
+@font-face {
+    font-family: "Open sans";
+    font-weight: bold;
+    src: url('font/OpenSans-Bold.ttf');
+}
+
+body {
+    font-family: "Open sans", Helvetica, Arial, sans-serif;
+}
+
 .main {
     height: 25px;
     width: 100%;
@@ -10,7 +32,7 @@
     a {
         color: grey;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 14px;
     }
 }
 
@@ -22,6 +44,16 @@
 
             a {
                 color: #b2d5f3;
+
+                i {
+                    font-size: 25px;
+                    margin-right: 7px;
+                    vertical-align: bottom;
+                }
+            }
+
+            &.separator {
+                color: rgb(227, 219, 219);
             }
         }
 
@@ -30,4 +62,187 @@
         border-bottom: 2px solid #ebebeb;
         text-align: right;
     }
+}
+
+.note {
+    .note-panel {
+
+        img.note-icon {
+            width: 38px;
+            vertical-align: bottom;
+            margin-bottom: 7px;
+        }
+
+        h2 {
+            font-size: 25px;
+            display: inline-block;
+            padding-top: 15px;
+            width: 85%;
+            color: #719eb7;
+            padding-left: 10px;
+        }
+
+        p {
+            width: 95%;
+            margin: 0px auto;
+            display: block;
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        span {
+            &.date {
+                display: inline-block;
+                text-transform: uppercase;
+                color: #686868;
+                margin-bottom: 12.8px;
+                border-bottom: 1px solid #c9c9c9;
+                font-size: 12px;
+            }
+        }
+    }
+
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    font-size: 25px;
+    color: rgb(150, 198, 203);
+    width: 100%;
+
+    .left {
+        cursor: pointer;
+        position: absolute;
+        left: 2%;
+        z-index: 100;
+    }
+
+    .right {
+        cursor: pointer;
+        position: absolute;
+        right: 2%;
+        z-index: 100;
+    }
+}
+
+.image-panel {
+    height: 92%;
+    width: 100%;
+}
+
+@media (max-width: $breakpoint-cell) {
+    .cell-menu {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 200;
+
+        button {
+            &.bio-burger {
+                margin: 15px;
+            }
+        }
+
+        ul {
+            left: 50%;
+            width: 100%;
+            list-style-type: none;
+
+            padding: 25px;
+
+            li {
+                color: white;
+                font-size: 17px;
+
+                span {
+                    margin-left: 10%;
+                    a {
+                        color: white;
+                        font-weight: bold;
+                    }
+
+                    i {
+                        margin-right: 20px;
+                        color: #ececec;
+                        font-size: 25px;
+                        vertical-align: bottom;
+                    }
+                }
+
+                hr {
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                    border-color: gray;
+                    border-style: dotted;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpoint-cell) {
+    .cell-menu {
+        display: none;
+    }
+}
+
+.category-panel {
+    height: 5%;
+
+    @media (min-width: $breakpoint-cell) {
+        li {
+            display: inline;
+
+            a {
+                color: rgba(150, 162, 149, 0.68);
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .separator {
+                color: gray;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-cell) {
+        ul {
+            display: none;
+        }
+
+        .separator {
+            display: none;
+        }
+    }
+}
+
+/**
+ * Test with react transitions...   
+ **/
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
