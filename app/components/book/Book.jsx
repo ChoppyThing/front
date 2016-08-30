@@ -17,23 +17,40 @@ var Book = React.createClass({
     return {
       categories: [],
       book: {data: []},
-      position: 1
+      photos: [],
+      position: 0
     };
   },
+
 
   componentDidUpdate: function(prevProps, prevState) {
     if (this.props.categories && prevProps.categories == undefined) {
       let category = this.props.categories[0].id
+
+      if (this.props.params.category != undefined) {
+        category = this.props.params.category;
+      }
       this.props.dispatch(BookActions.loadBook(category));
-      this.navigation();
     }
 
     if (prevProps.photos == undefined && this.props.photos!= undefined) {
+      let photos = this.props.photos.data;
+      this.setState({photos: photos});
       this.navigation();
     }
 
     if (prevState.position != this.state.position) {
       this.navigation();
+    }
+
+    if (prevProps.params.category != this.props.params.category) {
+      this.props.dispatch(BookActions.loadBook(this.props.params.category));
+    }
+
+    if (prevProps.photos != this.props.photos) {
+      let photos = this.props.photos.data;
+      this.setState({photos: photos});
+      this.setState({position: 0});
     }
   },
 
@@ -79,14 +96,14 @@ var Book = React.createClass({
 
 
     if (this.props.photos != undefined) {
-      photos = this.props.photos.data;
+      photos = this.state.photos;
     }
 
 
     var { categories, reduxState } = this.props;
 
     return (
-        <div className="note"> qsd{ left }
+        <div className="note">
           {/*JSON.stringify(this.state)*/}
 
           <CategoryMobile categories={categories}/>
@@ -127,10 +144,6 @@ var Book = React.createClass({
               })}
             </ReactCSSTransitionGroup>
           </div>
-
-        <pre>
-          {/* JSON.stringify(reduxState, null, 2) */}
-        </pre>
 
           <CategoryDesktop categories={categories}/>
 
