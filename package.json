@@ -7,12 +7,13 @@
     "setup": "npm install",
     "dev": "./node_modules/.bin/node-sass yoda.scss ./public/yoda.css && ./node_modules/.bin/webpack -d && webpack-dev-server --hot --host 0.0.0.0 --inline --content-base",
     "live": "node server.js",
-    "server": "./node_modules/.bin/webpack -d --config=webpack.server.config.js --progress && node ./server/server"
+    "server": "./node_modules/.bin/webpack -d --config=webpack.server.config.js --progress && node app/server/server"
   },
   "author": "Choppy Thing",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
+    "history": "^3.2.0",
     "http-server": "^0.9.0",
     "node-sass": "^3.8.0",
     "react": "^15.2.1",

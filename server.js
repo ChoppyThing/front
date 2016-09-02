@@ -1,3 +1,8 @@
+/**
+ * Used for live editing
+ * npm run live
+ */
+
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.live.config');
