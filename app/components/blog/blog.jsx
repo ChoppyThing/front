@@ -35,7 +35,7 @@ var Blog = React.createClass({
           currentPage={this.props.params.page}
         />
 
-        {this.props.params.page} Hello Bla
+        {this.props.params.page} Hello Blas
 
         <Link to={`/`}>Is that ?</Link>
 

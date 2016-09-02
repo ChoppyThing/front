@@ -3,5 +3,5 @@
  */
 
 module.exports = {
-  api_host : 'http://api.chuck.fr'
+  api_host : 'http://localhost.com:1337'
 };

@@ -7,6 +7,7 @@ var Layout = require('./components/utils/Layout');
 var browserHistory = require('react-router').browserHistory;
 var Blog = require('./components/blog/blog');
 var Note = require('./components/note/Note');
+var Book = require('./components/book/Book');
 var Provider = require('react-redux').Provider;
 var createStore = require('redux').createStore;
 var applyMiddleware = require('redux').applyMiddleware;
@@ -14,12 +15,15 @@ var combineReducers = require('redux').combineReducers;
 var syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore;
 var routerReducer = require('react-router-redux').routerReducer;
 var ReduxThunk = require('redux-thunk').default;
-var reducer = require('./reducers/NewsReducer');
+var NewsReducer = require('./reducers/NewsReducer');
+var BookReducer = require('./reducers/BookReducer');
 
-var blog = reducer.reducer;
+var blog = NewsReducer.reducer;
+var book = BookReducer.reducer;
 const store = createStore(
   combineReducers({
     blog,
+    book,
     routing: routerReducer
   }),
   applyMiddleware(ReduxThunk)
@@ -49,6 +53,9 @@ ReactDOM.render((
             <Route path="/blog/page/:page" component={Blog}/>
           </Route>
           <Route path="/blog/note/:note" component={Note}/>
+        </Route>
+        <Route path="/book" component={Book}>
+          <Route path="/book/:category" component={Book}/>
         </Route>
     </Router>
   </Provider>),
